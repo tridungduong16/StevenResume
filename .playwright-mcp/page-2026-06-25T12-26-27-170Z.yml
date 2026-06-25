@@ -1,0 +1,296 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - link "Asterix home" [ref=e8] [cursor=pointer]:
+        - /url: "#top"
+        - generic [ref=e9]: A*
+        - generic [ref=e10]: Asterix
+      - navigation "Primary navigation" [ref=e11]:
+        - link "Services" [ref=e12] [cursor=pointer]:
+          - /url: "#services"
+        - link "Portfolio" [ref=e13] [cursor=pointer]:
+          - /url: "#work"
+        - link "Process" [ref=e14] [cursor=pointer]:
+          - /url: "#process"
+        - link "Pricing" [ref=e15] [cursor=pointer]:
+          - /url: "#pricing"
+      - generic [ref=e16]:
+        - link "Sign in" [ref=e17] [cursor=pointer]:
+          - /url: "#top"
+        - link "Start Project" [ref=e18] [cursor=pointer]:
+          - /url: "#pricing"
+          - text: Start Project
+    - main [ref=e20]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]: Accepting New Clients
+          - heading "Build the web of tomorrow." [level=1] [ref=e27]:
+            - text: Build the web of
+            - generic [ref=e28]:
+              - text: tomorrow.
+              - img [ref=e29]
+          - paragraph [ref=e31]: Asterix engineers high-performance digital experiences. From pixel-perfect design to scalable architecture, we create websites that convert visitors into loyal customers.
+          - generic [ref=e32]:
+            - button "Start building" [ref=e33] [cursor=pointer]:
+              - img [ref=e34]
+              - generic [ref=e36]:
+                - generic [ref=e37]:
+                  - generic [ref=e38]: S
+                  - generic [ref=e39]: t
+                  - generic [ref=e40]: a
+                  - generic [ref=e41]: r
+                  - generic [ref=e42]: t
+                  - generic [ref=e43]: "N"
+                  - generic [ref=e44]: o
+                  - generic [ref=e45]: w
+                - generic [ref=e46]:
+                  - generic [ref=e47]: L
+                  - generic [ref=e48]: e
+                  - generic [ref=e49]: t
+                  - generic [ref=e50]: "'"
+                  - generic [ref=e51]: s
+                  - generic [ref=e52]: G
+                  - generic [ref=e53]: o
+            - link "View Portfolio" [ref=e54] [cursor=pointer]:
+              - /url: "#work"
+              - text: View Portfolio
+              - img [ref=e55]
+        - generic [ref=e57]:
+          - article [ref=e58]:
+            - img [ref=e61]
+            - heading "Enterprise Security" [level=3] [ref=e63]
+            - paragraph [ref=e64]: Bank-grade protection with automated threat detection, DDoS mitigation, and SSL management at the edge.
+          - article [ref=e65]:
+            - img [ref=e68]
+            - heading "Lightning Fast" [level=3] [ref=e70]
+            - paragraph [ref=e71]: Global CDN distribution ensures your site loads in milliseconds, optimizing core web vitals instantly.
+          - article [ref=e72]:
+            - img [ref=e75]
+            - heading "Modern Stack" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Built with the latest frameworks and best practices for maintainable, scalable, and clean codebases.
+      - generic [ref=e81]:
+        - paragraph [ref=e82]: Trusted by 500+ innovative companies
+        - generic [ref=e84]:
+          - img "Client logo 1"
+          - img "Client logo 2"
+          - img "Client logo 3"
+          - img "Client logo 4"
+          - img "Client logo 5"
+          - img "Client logo 6"
+          - img "Client logo 7"
+          - img "Client logo 8"
+          - img "Client logo 9"
+          - img "Client logo 10"
+          - img "Client logo 11"
+          - img "Client logo 12"
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - heading "Websites that perform & convert." [level=2] [ref=e89]:
+            - text: Websites that
+            - text: perform & convert.
+          - paragraph [ref=e90]: We don't just build websites; we engineer digital ecosystems. Our approach combines data-driven design with cutting-edge technology to deliver results that matter.
+          - generic [ref=e91]:
+            - article [ref=e92]:
+              - heading "Design Systems" [level=3] [ref=e93]
+              - paragraph [ref=e94]: Consistent, scalable UI libraries ensuring your brand looks perfect on every screen.
+            - article [ref=e95]:
+              - heading "Technical SEO" [level=3] [ref=e96]
+              - paragraph [ref=e97]: Architecture optimized for search engines, speed, and core web vitals from day one.
+            - article [ref=e98]:
+              - heading "CMS Integration" [level=3] [ref=e99]
+              - paragraph [ref=e100]: Headless CMS solutions giving your team complete control without breaking code.
+          - link "Explore Capabilities" [ref=e101] [cursor=pointer]:
+            - /url: "#work"
+            - text: Explore Capabilities
+            - img [ref=e102]
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - article [ref=e106]:
+              - img "Abstract design concept" [ref=e107]
+              - generic [ref=e109]:
+                - paragraph [ref=e110]: Concept
+                - heading "Wireframing" [level=3] [ref=e111]
+            - article [ref=e112]:
+              - img "Code and development workspace" [ref=e113]
+              - generic [ref=e115]:
+                - paragraph [ref=e116]: Develop
+                - heading "Clean Code" [level=3] [ref=e117]
+          - generic [ref=e118]:
+            - article [ref=e119]:
+              - img "Analytics dashboard" [ref=e120]
+              - generic [ref=e122]:
+                - paragraph [ref=e123]: Analyze
+                - heading "Data Driven" [level=3] [ref=e124]
+            - article [ref=e125]:
+              - img "Future technology scene" [ref=e126]
+              - generic [ref=e128]:
+                - paragraph [ref=e129]: Scale
+                - heading "Growth Ready" [level=3] [ref=e130]
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e134]:
+            - heading "Curated Solutions" [level=2] [ref=e135]
+            - paragraph [ref=e136]: Tailored packages for every stage of your digital journey.
+          - link "View all projects" [ref=e137] [cursor=pointer]:
+            - /url: "#pricing"
+            - text: View all projects
+            - img [ref=e139]
+        - generic [ref=e141]:
+          - article [ref=e142]:
+            - generic [ref=e143]:
+              - img "SaaS analytics dashboard" [ref=e144]
+              - generic [ref=e146]: Popular
+            - generic [ref=e147]:
+              - heading "SaaS Marketing Site" [level=3] [ref=e148]
+              - paragraph [ref=e149]: High-conversion landing pages integrated with analytics and CRM tools. Perfect for product launches.
+              - generic [ref=e150]:
+                - generic [ref=e151]: 2-4 Weeks
+                - strong [ref=e152]: From $5k
+          - article [ref=e153]:
+            - img "E-commerce interface" [ref=e155]
+            - generic [ref=e157]:
+              - heading "E-commerce Platform" [level=3] [ref=e158]
+              - paragraph [ref=e159]: Custom Shopify or headless solutions designed for speed and sales. Inventory and payment integration.
+              - generic [ref=e160]:
+                - generic [ref=e161]: 4-8 Weeks
+                - strong [ref=e162]: From $12k
+          - article [ref=e163]:
+            - img "Web app data dashboard" [ref=e165]
+            - generic [ref=e167]:
+              - heading "Custom Web App" [level=3] [ref=e168]
+              - paragraph [ref=e169]: Full-stack application development using React, Next.js, and Node. Complex logic made simple.
+              - generic [ref=e170]:
+                - generic [ref=e171]: 8+ Weeks
+                - strong [ref=e172]: Custom Quote
+      - generic [ref=e174]:
+        - generic [ref=e175]:
+          - heading "Transparent Pricing" [level=2] [ref=e176]
+          - paragraph [ref=e177]: Choose the plan that fits your growth stage.
+        - generic [ref=e178]:
+          - article [ref=e179]:
+            - heading "Starter" [level=3] [ref=e180]
+            - paragraph [ref=e181]: Essential digital presence.
+            - generic [ref=e182]:
+              - strong [ref=e183]: $2,900
+              - text: /project
+            - list [ref=e184]:
+              - listitem [ref=e185]:
+                - img [ref=e186]
+                - text: 5 Page Website
+              - listitem [ref=e188]:
+                - img [ref=e189]
+                - text: Basic SEO Setup
+              - listitem [ref=e191]:
+                - img [ref=e192]
+                - text: Mobile Responsive
+              - listitem [ref=e194]:
+                - img [ref=e195]
+                - text: Contact Form
+            - link "Get Started" [ref=e197] [cursor=pointer]:
+              - /url: "#top"
+          - article [ref=e198]:
+            - generic [ref=e199]: Most Popular
+            - heading "Growth" [level=3] [ref=e200]
+            - paragraph [ref=e201]: Scale your business.
+            - generic [ref=e202]:
+              - strong [ref=e203]: $7,900
+              - text: /project
+            - list [ref=e204]:
+              - listitem [ref=e205]:
+                - img [ref=e206]
+                - text: 10+ Page Website
+              - listitem [ref=e208]:
+                - img [ref=e209]
+                - text: CMS Integration
+              - listitem [ref=e211]:
+                - img [ref=e212]
+                - text: Advanced Analytics
+              - listitem [ref=e214]:
+                - img [ref=e215]
+                - text: Technical SEO Audit
+            - link "Get Started" [ref=e217] [cursor=pointer]:
+              - /url: "#top"
+          - article [ref=e218]:
+            - heading "Enterprise" [level=3] [ref=e219]
+            - paragraph [ref=e220]: Custom complex solutions.
+            - strong [ref=e222]: Custom
+            - list [ref=e223]:
+              - listitem [ref=e224]:
+                - img [ref=e225]
+                - text: Unlimited Pages
+              - listitem [ref=e227]:
+                - img [ref=e228]
+                - text: Custom Web App
+              - listitem [ref=e230]:
+                - img [ref=e231]
+                - text: Priority Support
+              - listitem [ref=e233]:
+                - img [ref=e234]
+                - text: Dedicated Manager
+            - link "Contact Sales" [ref=e236] [cursor=pointer]:
+              - /url: "#top"
+      - generic [ref=e239]:
+        - heading "Ready to elevate your digital presence?" [level=2] [ref=e240]
+        - paragraph [ref=e241]: Join the visionaries who trust Asterix to build their future. We turn complex requirements into elegant, high-performance websites.
+        - generic [ref=e242]:
+          - link "Start Your Project" [ref=e243] [cursor=pointer]:
+            - /url: "#pricing"
+            - text: Start Your Project
+            - img [ref=e244]
+          - link "Book Consultation" [ref=e246] [cursor=pointer]:
+            - /url: "#top"
+    - generic [ref=e248]:
+      - generic [ref=e249]:
+        - generic [ref=e250]:
+          - link "Asterix home" [ref=e251] [cursor=pointer]:
+            - /url: "#top"
+            - generic [ref=e252]: A*
+            - generic [ref=e253]: Asterix
+          - paragraph [ref=e254]: We are a digital product studio crafting experiences that merge art, technology, and strategy. Based in San Francisco, serving the world.
+          - generic [ref=e255]:
+            - link "twitter" [ref=e256] [cursor=pointer]:
+              - /url: "#top"
+              - img [ref=e257]
+            - link "instagram" [ref=e259] [cursor=pointer]:
+              - /url: "#top"
+              - img [ref=e260]
+            - link "linkedin" [ref=e263] [cursor=pointer]:
+              - /url: "#top"
+              - img [ref=e264]
+        - navigation "Services" [ref=e268]:
+          - heading "Services" [level=2] [ref=e269]
+          - list [ref=e270]:
+            - listitem [ref=e271]:
+              - link "Web Design" [ref=e272] [cursor=pointer]:
+                - /url: "#top"
+            - listitem [ref=e273]:
+              - link "Development" [ref=e274] [cursor=pointer]:
+                - /url: "#top"
+            - listitem [ref=e275]:
+              - link "SEO & Optimization" [ref=e276] [cursor=pointer]:
+                - /url: "#top"
+            - listitem [ref=e277]:
+              - link "Content Strategy" [ref=e278] [cursor=pointer]:
+                - /url: "#top"
+        - navigation "Company" [ref=e279]:
+          - heading "Company" [level=2] [ref=e280]
+          - list [ref=e281]:
+            - listitem [ref=e282]:
+              - link "About Us" [ref=e283] [cursor=pointer]:
+                - /url: "#top"
+            - listitem [ref=e284]:
+              - link "Careers" [ref=e285] [cursor=pointer]:
+                - /url: "#top"
+            - listitem [ref=e286]:
+              - link "Blog" [ref=e287] [cursor=pointer]:
+                - /url: "#top"
+            - listitem [ref=e288]:
+              - link "Contact" [ref=e289] [cursor=pointer]:
+                - /url: "#top"
+      - generic [ref=e290]:
+        - paragraph [ref=e291]: © 2024 Asterix Digital. All rights reserved.
+        - generic [ref=e292]:
+          - link "Privacy Policy" [ref=e293] [cursor=pointer]:
+            - /url: "#top"
+          - link "Terms of Service" [ref=e294] [cursor=pointer]:
+            - /url: "#top"

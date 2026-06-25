@@ -1,0 +1,151 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - link "Asterix home" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e9]: A*
+        - generic [ref=e10]: Asterix
+      - navigation "Primary navigation" [ref=e11]:
+        - link "Services" [ref=e12] [cursor=pointer]:
+          - /url: /services
+        - link "Portfolio" [ref=e13] [cursor=pointer]:
+          - /url: /portfolio
+        - link "Process" [ref=e14] [cursor=pointer]:
+          - /url: /process
+        - link "Pricing" [ref=e15] [cursor=pointer]:
+          - /url: /pricing
+      - generic [ref=e16]:
+        - link "Sign in" [ref=e17] [cursor=pointer]:
+          - /url: /
+        - link "Start Project" [ref=e18] [cursor=pointer]:
+          - /url: /pricing
+          - text: Start Project
+    - main [ref=e20]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]: Accepting New Clients
+          - heading "Build the web of tomorrow." [level=1] [ref=e27]:
+            - text: Build the web of
+            - generic [ref=e28]:
+              - text: tomorrow.
+              - img [ref=e29]
+          - paragraph [ref=e31]: Asterix engineers high-performance digital experiences. From pixel-perfect design to scalable architecture, we create websites that convert visitors into loyal customers.
+          - generic [ref=e32]:
+            - link "Start building" [ref=e33] [cursor=pointer]:
+              - /url: /pricing
+              - img [ref=e34]
+              - generic [ref=e36]:
+                - generic [ref=e37]:
+                  - generic [ref=e38]: S
+                  - generic [ref=e39]: t
+                  - generic [ref=e40]: a
+                  - generic [ref=e41]: r
+                  - generic [ref=e42]: t
+                  - generic [ref=e43]: "N"
+                  - generic [ref=e44]: o
+                  - generic [ref=e45]: w
+                - generic [ref=e46]:
+                  - generic [ref=e47]: L
+                  - generic [ref=e48]: e
+                  - generic [ref=e49]: t
+                  - generic [ref=e50]: "'"
+                  - generic [ref=e51]: s
+                  - generic [ref=e52]: G
+                  - generic [ref=e53]: o
+            - link "View Portfolio" [ref=e54] [cursor=pointer]:
+              - /url: /portfolio
+              - text: View Portfolio
+              - img [ref=e55]
+        - generic [ref=e57]:
+          - article [ref=e58]:
+            - img [ref=e61]
+            - heading "Enterprise Security" [level=3] [ref=e63]
+            - paragraph [ref=e64]: Bank-grade protection with automated threat detection, DDoS mitigation, and SSL management at the edge.
+          - article [ref=e65]:
+            - img [ref=e68]
+            - heading "Lightning Fast" [level=3] [ref=e70]
+            - paragraph [ref=e71]: Global CDN distribution ensures your site loads in milliseconds, optimizing core web vitals instantly.
+          - article [ref=e72]:
+            - img [ref=e75]
+            - heading "Modern Stack" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Built with the latest frameworks and best practices for maintainable, scalable, and clean codebases.
+      - generic [ref=e81]:
+        - paragraph [ref=e82]: Trusted by 500+ innovative companies
+        - generic [ref=e84]:
+          - img "Client logo 1" [ref=e85]
+          - img "Client logo 2" [ref=e86]
+          - img "Client logo 3" [ref=e87]
+          - img "Client logo 4" [ref=e88]
+          - img "Client logo 5" [ref=e89]
+          - img "Client logo 6" [ref=e90]
+          - img "Client logo 7" [ref=e91]
+          - img "Client logo 8" [ref=e92]
+          - img "Client logo 9" [ref=e93]
+          - img "Client logo 10" [ref=e94]
+          - img "Client logo 11" [ref=e95]
+          - img "Client logo 12" [ref=e96]
+      - generic [ref=e99]:
+        - heading "Ready to elevate your digital presence?" [level=2] [ref=e100]
+        - paragraph [ref=e101]: Join the visionaries who trust Asterix to build their future. We turn complex requirements into elegant, high-performance websites.
+        - generic [ref=e102]:
+          - link "Start Your Project" [ref=e103] [cursor=pointer]:
+            - /url: /pricing
+            - text: Start Your Project
+            - img [ref=e104]
+          - link "Book Consultation" [ref=e106] [cursor=pointer]:
+            - /url: /
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - link "Asterix home" [ref=e111] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e112]: A*
+            - generic [ref=e113]: Asterix
+          - paragraph [ref=e114]: We are a digital product studio crafting experiences that merge art, technology, and strategy. Based in San Francisco, serving the world.
+          - generic [ref=e115]:
+            - link "twitter" [ref=e116] [cursor=pointer]:
+              - /url: /
+              - img [ref=e117]
+            - link "instagram" [ref=e119] [cursor=pointer]:
+              - /url: /
+              - img [ref=e120]
+            - link "linkedin" [ref=e123] [cursor=pointer]:
+              - /url: /
+              - img [ref=e124]
+        - navigation "Services" [ref=e128]:
+          - heading "Services" [level=2] [ref=e129]
+          - list [ref=e130]:
+            - listitem [ref=e131]:
+              - link "Web Design" [ref=e132] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e133]:
+              - link "Development" [ref=e134] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e135]:
+              - link "SEO & Optimization" [ref=e136] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e137]:
+              - link "Content Strategy" [ref=e138] [cursor=pointer]:
+                - /url: /
+        - navigation "Company" [ref=e139]:
+          - heading "Company" [level=2] [ref=e140]
+          - list [ref=e141]:
+            - listitem [ref=e142]:
+              - link "About Us" [ref=e143] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e144]:
+              - link "Careers" [ref=e145] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e146]:
+              - link "Blog" [ref=e147] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e148]:
+              - link "Contact" [ref=e149] [cursor=pointer]:
+                - /url: /
+      - generic [ref=e150]:
+        - paragraph [ref=e151]: © 2024 Asterix Digital. All rights reserved.
+        - generic [ref=e152]:
+          - link "Privacy Policy" [ref=e153] [cursor=pointer]:
+            - /url: /
+          - link "Terms of Service" [ref=e154] [cursor=pointer]:
+            - /url: /
