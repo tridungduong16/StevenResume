@@ -29,51 +29,51 @@ export const logoUrls = [
 
 export const capabilities = [
   {
-    title: 'Design Systems',
+    title: 'AI Agent Engineering',
     description:
-      'Consistent, scalable UI libraries ensuring your brand looks perfect on every screen.',
+      'Tool-using agent workflows with retrieval, memory, orchestration, and human review patterns.',
   },
   {
-    title: 'Technical SEO',
+    title: 'Machine Learning Engineering',
     description:
-      'Architecture optimized for search engines, speed, and core web vitals from day one.',
+      'Production-minded ML pipelines spanning data preparation, modeling, evaluation, deployment, and monitoring.',
   },
   {
-    title: 'CMS Integration',
+    title: 'Explainable AI',
     description:
-      'Headless CMS solutions giving your team complete control without breaking code.',
+      'Interpretable model analysis using statistical modeling, XAI methods, and research-driven evaluation.',
   },
 ] as const;
 
 export const processTiles = [
   {
-    phase: 'Concept',
-    title: 'Wireframing',
-    alt: 'Abstract design concept',
+    phase: 'Orchestrate',
+    title: 'Tool-using Agents',
+    alt: 'Abstract AI agent orchestration concept',
     image:
       'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
     tall: true,
   },
   {
-    phase: 'Develop',
-    title: 'Clean Code',
-    alt: 'Code and development workspace',
+    phase: 'Retrieve',
+    title: 'RAG Pipelines',
+    alt: 'Code and retrieval workspace',
     image:
       'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop',
     tall: false,
   },
   {
-    phase: 'Analyze',
-    title: 'Data Driven',
-    alt: 'Analytics dashboard',
+    phase: 'Explain',
+    title: 'XAI Models',
+    alt: 'Model analytics dashboard',
     image:
       'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop',
     tall: false,
   },
   {
-    phase: 'Scale',
-    title: 'Growth Ready',
-    alt: 'Future technology scene',
+    phase: 'Evaluate',
+    title: 'Agent Quality',
+    alt: 'Future AI evaluation scene',
     image:
       'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop',
     tall: true,
@@ -82,7 +82,7 @@ export const processTiles = [
 
 export const solutions = [
   {
-    title: 'SaaS Marketing Site',
+    title: 'Incept AI',
     description:
       'High-conversion landing pages integrated with analytics and CRM tools. Perfect for product launches.',
     timeline: '2-4 Weeks',
@@ -93,7 +93,7 @@ export const solutions = [
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
   },
   {
-    title: 'E-commerce Platform',
+    title: 'Qonnex AI',
     description:
       'Custom Shopify or headless solutions designed for speed and sales. Inventory and payment integration.',
     timeline: '4-8 Weeks',
@@ -104,7 +104,7 @@ export const solutions = [
       'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800&auto=format&fit=crop',
   },
   {
-    title: 'Custom Web App',
+    title: 'Okas AI',
     description:
       'Full-stack application development using React, Next.js, and Node. Complex logic made simple.',
     timeline: '8+ Weeks',

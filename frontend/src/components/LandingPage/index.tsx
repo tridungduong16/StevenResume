@@ -37,53 +37,47 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ] as const;
 
-const tickerItems = ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Redux', 'Responsive UI'];
+const tickerItems = ['AI Agents', 'LLM Workflows', 'RAG', 'Python', 'MLOps', 'Explainable AI'];
 
 const services = [
   {
-    title: 'Product Interfaces',
+    title: 'AI Agent Engineering',
     description:
-      'Feature-rich React screens with responsive layout, accessible states, and practical product flows.',
-    bullets: ['UI architecture', 'Component implementation', 'Interaction states', 'Design handoff'],
+      'Design and build agentic systems that can reason over tasks, use tools, retrieve context, and produce reliable outputs.',
+    bullets: ['Tool calling', 'Agent workflows', 'Memory design', 'Human-in-the-loop review'],
   },
   {
-    title: 'Frontend Systems',
+    title: 'Machine Learning Engineering',
     description:
-      'Maintainable TypeScript codebases with reusable modules, predictable routing, and clear state boundaries.',
-    bullets: ['React + TypeScript', 'Redux Toolkit', 'Vite builds', 'SCSS modules'],
+      'Develop practical ML pipelines from data preparation and modeling through evaluation, deployment, and monitoring.',
+    bullets: ['Python ML stack', 'Model evaluation', 'MLOps pipelines', 'Statistical modeling'],
   },
   {
-    title: 'UX Polish',
+    title: 'Explainable AI',
     description:
-      'Small details that make interfaces feel finished: motion, spacing, density, and mobile behavior.',
-    bullets: ['Responsive QA', 'Performance-minded UI', 'Visual refinement', 'Accessibility checks'],
+      'Make model behavior easier to inspect, communicate, and improve with interpretable methods and research discipline.',
+    bullets: ['Interpretable ML', 'XAI methods', 'Experiment design', 'Responsible AI'],
   },
 ] as const;
 
 const selectedWork = [
   {
-    title: 'Resume Portfolio',
+    title: 'Incept AI',
     category: 'Personal Site',
     image:
       'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a6ea5042-fd78-4888-b5e1-47f268a0569b_800w.jpg',
   },
   {
-    title: 'Nexus Dashboard',
+    title: 'Qonnex AI',
     category: 'Web Platform',
     image:
       'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/78877756-9e45-410e-b630-78c3dfb8e94c_1600w.jpg',
   },
   {
-    title: 'Zenith Store',
+    title: 'Okas AI',
     category: 'E-commerce',
     image:
       'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ee361ca-4978-4130-bab8-b605105c04b4_1600w.jpg',
-  },
-  {
-    title: 'Orbit Workspace',
-    category: 'Collaboration',
-    image:
-      'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5162c07d-8a65-4a42-9a8c-c48dbea36297_1600w.jpg',
   },
 ] as const;
 
@@ -103,17 +97,17 @@ const aboutImages = [
 ] as const;
 
 const aboutHighlights = [
-  { icon: 'zap', text: 'Frontend developer focused on clean, usable product interfaces.' },
-  { icon: 'message', text: 'Comfortable working between design intent and engineering constraints.' },
-  { icon: 'smile', text: 'Clear communicator who keeps implementation details understandable.' },
+  { icon: 'zap', text: 'Several years of machine learning engineering industry experience.' },
+  { icon: 'message', text: 'Researcher and Ph.D. candidate with academic research experience.' },
+  { icon: 'smile', text: 'Specialized in Explainable AI, Interpretable Machine Learning, and Statistical Modeling.' },
 ] as const;
 
 const codeLines = [
   '// Resume interface',
   'const focus = {',
-  '  role: "Frontend Developer",',
-  '  stack: ["React", "TypeScript", "SCSS"],',
-  '  goal: "ship polished UI"',
+  '  role: "AI Engineer",',
+  '  stack: ["Python", "LLMs", "RAG", "MLOps"],',
+  '  goal: "ship reliable AI agents"',
   '};',
 ] as const;
 
@@ -310,12 +304,12 @@ function HeroSection() {
           </div>
           <p className={`${styles.eyebrow} ${styles.slideUp}`}>Steven Duong</p>
           <h1 className={`${styles.heroTitle} ${styles.slideUp} ${styles.delay1}`}>
-            <span>Frontend</span>
-            <span>Developer</span>
+            <span>AI</span>
+            <span>Engineer</span>
           </h1>
           <p className={`${styles.heroCopy} ${styles.slideUp} ${styles.delay2}`}>
-            I build responsive, polished frontend experiences with React, TypeScript, and a
-            practical eye for product usability.
+            I build machine learning systems and AI agents with practical engineering, research
+            depth, and a focus on reliable model behavior.
           </p>
           <div className={`${styles.heroActions} ${styles.slideUp} ${styles.delay3}`}>
             <a className={styles.primaryButton} href="#work">
@@ -330,16 +324,16 @@ function HeroSection() {
           </div>
           <div className={`${styles.heroStats} ${styles.fadeIn} ${styles.delay4}`}>
             <div>
-              <strong>React</strong>
-              <span>Interface stack</span>
+              <strong>LLM Agents</strong>
+              <span>Agent systems</span>
             </div>
             <div>
-              <strong>TypeScript</strong>
-              <span>Code quality</span>
+              <strong>RAG</strong>
+              <span>Retrieval workflows</span>
             </div>
             <div>
-              <strong>Responsive</strong>
-              <span>Mobile first</span>
+              <strong>XAI</strong>
+              <span>Interpretability</span>
             </div>
           </div>
         </div>
@@ -354,7 +348,7 @@ function TrustedTicker() {
   return (
     <section className={styles.tickerSection}>
       <div className={styles.container}>
-        <p>Core frontend toolkit</p>
+        <p>Core AI engineering toolkit</p>
         <div className={styles.tickerMask}>
           <div className={styles.tickerTrack}>
             {items.map((item, index) => (
@@ -373,8 +367,8 @@ export function ServicesSection() {
       <div className={styles.container}>
         <SectionIntro
           kicker="What I do"
-          title="Frontend work for usable products."
-          body="The structure follows template2's glass portfolio style, adapted for a frontend resume and real app routes."
+          title="AI engineering for agentic products."
+          body="Skills focused on LLM agents, machine learning systems, retrieval workflows, and interpretable model behavior."
         />
         <div className={styles.serviceGrid}>
           {services.map((service, index) => (
@@ -443,15 +437,18 @@ function AboutSection() {
             </div>
           </div>
           <div className={styles.aboutCopy}>
-            <h3>Building interfaces with product context.</h3>
+            <h3>Machine learning engineering and applied research.</h3>
             <p>
-              I care about the details that make frontend work dependable: readable component
-              structure, responsive behavior, stable spacing, and interactions that feel natural.
+              I am a highly experienced professional with a diverse background in the field of
+              machine learning engineering, having gained several years of industry experience and
+              honed my research skills as a researcher and Ph.D. candidate in the academic sphere.
             </p>
             <p>
-              My strongest work sits between design and implementation. I translate visual intent
-              into production UI, keep states clear, and make pages easy to scan on both desktop and
-              mobile.
+              I possess a comprehensive understanding of machine learning algorithms, probability,
+              and statistics, and through my participation in various empirical and academic
+              projects, I have acquired a great deal of specialized expertise in the areas of
+              Explainable AI, Interpretable Machine Learning, Statistical Modeling, and software
+              development best practices.
             </p>
             <ul className={styles.aboutHighlights}>
               {aboutHighlights.map((item) => (
@@ -558,7 +555,7 @@ function ResearchIllustration() {
 
 function CodeWindow() {
   return (
-    <div className={styles.codeWindow} aria-label="Frontend code sample">
+    <div className={styles.codeWindow} aria-label="AI engineering code sample">
       <div className={styles.windowChrome}>
         <span />
         <span />
@@ -635,7 +632,7 @@ function ContactSection() {
                 ))}
               </nav>
               <nav aria-label="Footer focus links">
-                {['React', 'TypeScript', 'Responsive UI', 'Product UX'].map((item) => (
+                {['AI Agents', 'RAG', 'Explainable AI', 'MLOps'].map((item) => (
                   <a href="#skills" key={item}>
                     {item}
                   </a>
