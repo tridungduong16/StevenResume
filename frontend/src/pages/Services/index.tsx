@@ -1,9 +1,5 @@
-import { LandingShell, ServicesSection } from '@/components/LandingPage';
+import { HomeLanding } from '@/components/LandingPage';
 
 export function Services() {
-  return (
-    <LandingShell>
-      <ServicesSection />
-    </LandingShell>
-  );
+  return <HomeLanding />;
 }

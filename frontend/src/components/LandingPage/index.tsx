@@ -1,160 +1,364 @@
-import clsx from 'clsx';
-import { Link, NavLink } from 'react-router-dom';
+import type { CSSProperties, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 
-import { NAVIGATION_ITEMS, ROUTES } from '@/constants/routes';
-import {
-  capabilities,
-  features,
-  footerGroups,
-  logoUrls,
-  pricingPlans,
-  processTiles,
-  solutions,
-} from './landingData';
-import { ArrowRightIcon, CheckIcon, CodeIcon, FeatureIcon, SocialIcon } from './icons';
 import styles from './LandingPage.module.scss';
 
-function BrandMark({ compact = false }: { compact?: boolean }) {
+type IconName =
+  | 'arrowRight'
+  | 'arrowUp'
+  | 'arrowUpRight'
+  | 'calendar'
+  | 'check'
+  | 'clock'
+  | 'dribbble'
+  | 'github'
+  | 'linkedin'
+  | 'mail'
+  | 'menu'
+  | 'message'
+  | 'play'
+  | 'smile'
+  | 'twitter'
+  | 'user'
+  | 'zap';
+
+type IconProps = {
+  className?: string;
+  name: IconName;
+};
+
+const profileImage =
+  'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f804111a-fe24-4660-b754-0f3654213f91_320w.jpg';
+
+const navItems = [
+  { label: 'Work', href: '#work' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Process', href: '#process' },
+  { label: 'Contact', href: '#contact' },
+] as const;
+
+const tickerItems = ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Redux', 'Responsive UI'];
+
+const services = [
+  {
+    title: 'Product Interfaces',
+    description:
+      'Feature-rich React screens with responsive layout, accessible states, and practical product flows.',
+    bullets: ['UI architecture', 'Component implementation', 'Interaction states', 'Design handoff'],
+  },
+  {
+    title: 'Frontend Systems',
+    description:
+      'Maintainable TypeScript codebases with reusable modules, predictable routing, and clear state boundaries.',
+    bullets: ['React + TypeScript', 'Redux Toolkit', 'Vite builds', 'SCSS modules'],
+  },
+  {
+    title: 'UX Polish',
+    description:
+      'Small details that make interfaces feel finished: motion, spacing, density, and mobile behavior.',
+    bullets: ['Responsive QA', 'Performance-minded UI', 'Visual refinement', 'Accessibility checks'],
+  },
+] as const;
+
+const selectedWork = [
+  {
+    title: 'Resume Portfolio',
+    category: 'Personal Site',
+    image:
+      'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a6ea5042-fd78-4888-b5e1-47f268a0569b_800w.jpg',
+  },
+  {
+    title: 'Nexus Dashboard',
+    category: 'Web Platform',
+    image:
+      'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/78877756-9e45-410e-b630-78c3dfb8e94c_1600w.jpg',
+  },
+  {
+    title: 'Zenith Store',
+    category: 'E-commerce',
+    image:
+      'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ee361ca-4978-4130-bab8-b605105c04b4_1600w.jpg',
+  },
+  {
+    title: 'Orbit Workspace',
+    category: 'Collaboration',
+    image:
+      'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5162c07d-8a65-4a42-9a8c-c48dbea36297_1600w.jpg',
+  },
+] as const;
+
+const aboutImages = [
+  {
+    src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b6453140-0e66-40b1-89b8-06321fdcdc09_1600w.jpg',
+    alt: 'Laptop workspace',
+  },
+  {
+    src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dfbdff07-910b-401f-9b3c-472e23555ca7_800w.jpg',
+    alt: 'Design workspace setup',
+  },
+  {
+    src: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/72c8b3bf-292e-4424-b26d-4fcb776f58d6_800w.jpg',
+    alt: 'Interface design reference',
+  },
+] as const;
+
+const aboutHighlights = [
+  { icon: 'zap', text: 'Frontend developer focused on clean, usable product interfaces.' },
+  { icon: 'message', text: 'Comfortable working between design intent and engineering constraints.' },
+  { icon: 'smile', text: 'Clear communicator who keeps implementation details understandable.' },
+] as const;
+
+const codeLines = [
+  '// Resume interface',
+  'const focus = {',
+  '  role: "Frontend Developer",',
+  '  stack: ["React", "TypeScript", "SCSS"],',
+  '  goal: "ship polished UI"',
+  '};',
+] as const;
+
+function Icon({ className, name }: IconProps) {
+  const paths: Record<IconName, ReactNode> = {
+    arrowRight: (
+      <>
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </>
+    ),
+    arrowUp: <path d="M12 19V6m-7 7 7-7 7 7" />,
+    arrowUpRight: (
+      <>
+        <path d="M7 7h10v10" />
+        <path d="M7 17 17 7" />
+      </>
+    ),
+    calendar: (
+      <>
+        <path d="M8 2v4" />
+        <path d="M16 2v4" />
+        <rect width="18" height="18" x="3" y="4" rx="2" />
+        <path d="M3 10h18" />
+      </>
+    ),
+    check: <path d="M20 6 9 17l-5-5" />,
+    clock: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </>
+    ),
+    dribbble: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94" />
+        <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32" />
+        <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72" />
+      </>
+    ),
+    github: (
+      <>
+        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+        <path d="M9 18c-4.51 2-5-2-7-2" />
+      </>
+    ),
+    linkedin: (
+      <>
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect width="4" height="12" x="2" y="9" />
+        <circle cx="4" cy="4" r="2" />
+      </>
+    ),
+    mail: (
+      <>
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+      </>
+    ),
+    menu: (
+      <>
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+        <path d="M4 6h16" />
+      </>
+    ),
+    message: <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719" />,
+    play: <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" />,
+    smile: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+        <path d="M9 9h.01" />
+        <path d="M15 9h.01" />
+      </>
+    ),
+    twitter: <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />,
+    user: (
+      <>
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </>
+    ),
+    zap: <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />,
+  };
+
   return (
-    <Link className={styles.brand} to={ROUTES.home} aria-label="Asterix home">
-      <span className={clsx(styles.brandIcon, compact && styles.brandIconCompact)}>A*</span>
-      <span className={clsx(styles.brandName, compact && styles.brandNameCompact)}>Asterix</span>
-    </Link>
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      {paths[name]}
+    </svg>
   );
 }
 
-function AnimatedButton() {
-  const primaryText = 'Start Now'.split('');
-  const focusText = "Let's Go".split('');
-
+function BrandMark() {
   return (
-    <Link className={styles.generateButton} to={ROUTES.pricing} aria-label="Start building">
-      <CodeIcon className={styles.generateIcon} />
-      <span className={styles.generateText}>
-        <span className={styles.generateTextPrimary}>
-          {primaryText.map((letter, index) => (
-            <span
-              className={clsx(styles.generateLetter, letter === ' ' && styles.generateSpace)}
-              key={`${letter}-${index}`}
-            >
-              {letter}
-            </span>
-          ))}
-        </span>
-        <span className={styles.generateTextSecondary}>
-          {focusText.map((letter, index) => (
-            <span
-              className={clsx(styles.generateLetter, letter === ' ' && styles.generateSpace)}
-              key={`${letter}-${index}`}
-            >
-              {letter}
-            </span>
-          ))}
-        </span>
-      </span>
-    </Link>
+    <a className={styles.brand} href="#hero">
+      <span>SD</span>
+      <strong>Steven</strong>
+    </a>
   );
 }
 
 function SiteHeader() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className={styles.header} id="top">
-      <div className={styles.container}>
-        <div className={styles.navbar}>
+    <header className={styles.header}>
+      <div className={styles.navShell}>
+        <div className={styles.navBar}>
           <BrandMark />
-          <nav className={styles.navLinks} aria-label="Primary navigation">
-            {NAVIGATION_ITEMS.map((item) => (
-              <NavLink
-                className={({ isActive }) => clsx(isActive && styles.navLinkActive)}
-                to={item.path}
-                key={item.path}
-              >
+          <nav aria-label="Primary navigation" className={styles.navLinks}>
+            {navItems.map((item) => (
+              <a href={item.href} key={item.href}>
                 {item.label}
-              </NavLink>
+              </a>
             ))}
           </nav>
-          <div className={styles.navActions}>
-            <Link className={styles.signIn} to={ROUTES.home}>
-              Sign in
-            </Link>
-            <Link className={styles.projectLink} to={ROUTES.pricing}>
-              <span />
-              Start Project
-            </Link>
-          </div>
+          <a className={styles.connectButton} href="#contact">
+            <Icon name="arrowRight" />
+            Let's connect
+          </a>
+          <button
+            aria-expanded={isOpen}
+            aria-label="Toggle navigation"
+            className={styles.menuButton}
+            onClick={() => setIsOpen((value) => !value)}
+            type="button"
+          >
+            <Icon name="menu" />
+          </button>
         </div>
+        {isOpen ? (
+          <nav aria-label="Mobile navigation" className={styles.mobileNav}>
+            {navItems.map((item) => (
+              <a href={item.href} key={item.href} onClick={() => setIsOpen(false)}>
+                {item.label}
+              </a>
+            ))}
+            <a className={styles.mobileConnect} href="#contact" onClick={() => setIsOpen(false)}>
+              <Icon name="arrowRight" />
+              Let's connect
+            </a>
+          </nav>
+        ) : null}
       </div>
     </header>
   );
 }
 
-function HeroSection() {
+function StatusIndicator() {
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
-    <section className={styles.hero}>
+    <button className={styles.statusIndicator} onClick={scrollToContact} type="button">
+      <span className={styles.statusDot} />
+      <span>Available for projects</span>
+      <Icon name="arrowUpRight" />
+    </button>
+  );
+}
+
+function HeroSection() {
+  const [cursor, setCursor] = useState({ active: false, x: 0, y: 0 });
+  const heroStyle = {
+    '--cursor-x': `${cursor.x}px`,
+    '--cursor-y': `${cursor.y}px`,
+  } as CSSProperties;
+
+  return (
+    <section
+      className={`${styles.hero} ${cursor.active ? styles.cursorActive : ''}`}
+      id="hero"
+      onMouseEnter={() => setCursor((value) => ({ ...value, active: true }))}
+      onMouseLeave={() => setCursor((value) => ({ ...value, active: false }))}
+      onMouseMove={(event) => setCursor({ active: true, x: event.clientX, y: event.clientY })}
+      style={heroStyle}
+    >
       <div className={styles.container}>
-        <div className={styles.heroContent}>
-          <div className={styles.statusBadge}>
-            <span className={styles.statusDot}>
-              <span />
-            </span>
-            Accepting New Clients
+        <div className={styles.heroInner}>
+          <div className={`${styles.profileWrap} ${styles.scaleIn}`}>
+            <img alt="Steven Duong" src={profileImage} />
           </div>
-          <h1>
-            Build the web of
-            <br />
-            <span>
-              tomorrow.
-              <svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
-              </svg>
-            </span>
+          <p className={`${styles.eyebrow} ${styles.slideUp}`}>Steven Duong</p>
+          <h1 className={`${styles.heroTitle} ${styles.slideUp} ${styles.delay1}`}>
+            <span>Frontend</span>
+            <span>Developer</span>
           </h1>
-          <p>
-            Asterix engineers high-performance digital experiences. From pixel-perfect design to
-            scalable architecture, we create websites that convert visitors into loyal customers.
+          <p className={`${styles.heroCopy} ${styles.slideUp} ${styles.delay2}`}>
+            I build responsive, polished frontend experiences with React, TypeScript, and a
+            practical eye for product usability.
           </p>
-          <div className={styles.heroActions}>
-            <AnimatedButton />
-            <Link className={styles.secondaryButton} to={ROUTES.portfolio}>
-              View Portfolio
-              <ArrowRightIcon />
-            </Link>
+          <div className={`${styles.heroActions} ${styles.slideUp} ${styles.delay3}`}>
+            <a className={styles.primaryButton} href="#work">
+              <Icon name="play" />
+              View my work
+              <Icon name="arrowRight" />
+            </a>
+            <a className={styles.secondaryButton} href="#about">
+              <Icon name="user" />
+              About me
+            </a>
+          </div>
+          <div className={`${styles.heroStats} ${styles.fadeIn} ${styles.delay4}`}>
+            <div>
+              <strong>React</strong>
+              <span>Interface stack</span>
+            </div>
+            <div>
+              <strong>TypeScript</strong>
+              <span>Code quality</span>
+            </div>
+            <div>
+              <strong>Responsive</strong>
+              <span>Mobile first</span>
+            </div>
           </div>
         </div>
-        <FeatureGrid />
       </div>
     </section>
   );
 }
 
-function FeatureGrid() {
-  return (
-    <div className={styles.featureGrid}>
-      {features.map((feature) => (
-        <article className={styles.featureCard} key={feature.title}>
-          <div className={styles.featureGlow} />
-          <span className={styles.featureIcon}>
-            <FeatureIcon name={feature.icon} />
-          </span>
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-function LogoMarquee() {
-  const logos = [...logoUrls, ...logoUrls, logoUrls[0], logoUrls[1]];
+function TrustedTicker() {
+  const items = [...tickerItems, ...tickerItems, ...tickerItems];
 
   return (
-    <section className={styles.logoSection}>
+    <section className={styles.tickerSection}>
       <div className={styles.container}>
-        <p>Trusted by 500+ innovative companies</p>
-        <div className={styles.logoMask}>
-          <div className={styles.logoTrack}>
-            {logos.map((logo, index) => (
-              <img src={logo} alt={`Client logo ${index + 1}`} key={`${logo}-${index}`} />
+        <p>Core frontend toolkit</p>
+        <div className={styles.tickerMask}>
+          <div className={styles.tickerTrack}>
+            {items.map((item, index) => (
+              <span key={`${item}-${index}`}>{item}</span>
             ))}
           </div>
         </div>
@@ -165,31 +369,100 @@ function LogoMarquee() {
 
 export function ServicesSection() {
   return (
-    <section className={styles.services} id="services">
+    <section className={styles.services} id="skills">
       <div className={styles.container}>
-        <div className={styles.servicesSingle}>
-          <div className={styles.servicesCopy}>
-            <h2>
-              Websites that
-              <br />
-              <span>perform & convert.</span>
-            </h2>
-            <p>
-              We don't just build websites; we engineer digital ecosystems. Our approach combines
-              data-driven design with cutting-edge technology to deliver results that matter.
-            </p>
-            <div className={styles.capabilityList}>
-              {capabilities.map((capability) => (
-                <article className={styles.capabilityItem} key={capability.title}>
-                  <h3>{capability.title}</h3>
-                  <p>{capability.description}</p>
-                </article>
+        <SectionIntro
+          kicker="What I do"
+          title="Frontend work for usable products."
+          body="The structure follows template2's glass portfolio style, adapted for a frontend resume and real app routes."
+        />
+        <div className={styles.serviceGrid}>
+          {services.map((service, index) => (
+            <article className={styles.serviceCard} key={service.title} style={{ '--card-index': index } as CSSProperties}>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <ul>
+                {service.bullets.map((bullet) => (
+                  <li key={bullet}>
+                    <Icon name="check" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function WorkSection() {
+  return (
+    <section className={styles.work} id="work">
+      <div className={styles.container}>
+        <div className={styles.sectionRow}>
+          <div>
+            <span>Selected Work</span>
+            <h2>Project snapshots</h2>
+          </div>
+          <a href="#contact">
+            Start a conversation
+            <Icon name="arrowUpRight" />
+          </a>
+        </div>
+        <div className={styles.workGrid}>
+          {selectedWork.map((work) => (
+            <article className={styles.workCard} key={work.title}>
+              <img alt={work.title} src={work.image} />
+              <div className={styles.workOverlay} />
+              <div className={styles.workMeta}>
+                <strong>{work.title}</strong>
+                <span>{work.category}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section className={styles.about} id="about">
+      <div className={styles.container}>
+        <SectionIntro kicker="About me" title="Curious about Steven?" />
+        <div className={styles.aboutGrid}>
+          <div className={styles.aboutMedia}>
+            <img alt={aboutImages[0].alt} className={styles.aboutHeroImage} src={aboutImages[0].src} />
+            <div className={styles.aboutThumbs}>
+              {aboutImages.slice(1).map((image) => (
+                <img alt={image.alt} key={image.src} src={image.src} />
               ))}
             </div>
-            <Link className={styles.textLink} to={ROUTES.portfolio}>
-              Explore Capabilities
-              <ArrowRightIcon />
-            </Link>
+          </div>
+          <div className={styles.aboutCopy}>
+            <h3>Building interfaces with product context.</h3>
+            <p>
+              I care about the details that make frontend work dependable: readable component
+              structure, responsive behavior, stable spacing, and interactions that feel natural.
+            </p>
+            <p>
+              My strongest work sits between design and implementation. I translate visual intent
+              into production UI, keep states clear, and make pages easy to scan on both desktop and
+              mobile.
+            </p>
+            <ul className={styles.aboutHighlights}>
+              {aboutHighlights.map((item) => (
+                <li key={item.text}>
+                  <span>
+                    <Icon name={item.icon} />
+                  </span>
+                  {item.text}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -198,88 +471,51 @@ export function ServicesSection() {
 }
 
 export function ProcessSection() {
-  const leftTiles = processTiles.slice(0, 2);
-  const rightTiles = processTiles.slice(2);
-
   return (
-    <section className={styles.services} id="process">
+    <section className={styles.process} id="process">
       <div className={styles.container}>
-        <div className={styles.sectionHeader}>
-          <div>
-            <h2>Process</h2>
-            <p>From early structure to scalable launch, each stage has a clear purpose.</p>
-          </div>
-          <Link to={ROUTES.pricing}>
-            Start a project
-            <span>
-              <ArrowRightIcon />
+        <SectionIntro
+          kicker="Process"
+          title="From structure to polished delivery."
+          body="The process cards preserve template2's glass panels, code window, and metrics treatment without relying on external scripts."
+        />
+        <div className={styles.processGrid}>
+          <article className={styles.processCard}>
+            <ResearchIllustration />
+            <span className={styles.processMeta}>
+              <Icon name="clock" />
+              Discovery
             </span>
-          </Link>
-        </div>
-        <div className={styles.processGridPage}>
-          <div className={styles.tileColumnOffset}>
-            {leftTiles.map((tile) => (
-              <ProcessTile tile={tile} key={tile.title} />
-            ))}
-          </div>
-          <div className={styles.tileColumn}>
-            {rightTiles.map((tile) => (
-              <ProcessTile tile={tile} key={tile.title} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProcessTile({ tile }: { tile: (typeof processTiles)[number] }) {
-  return (
-    <article className={clsx(styles.processTile, tile.tall && styles.processTileTall)}>
-      <img src={tile.image} alt={tile.alt} />
-      <div className={styles.imageOverlay} />
-      <div>
-        <p>{tile.phase}</p>
-        <h3>{tile.title}</h3>
-      </div>
-    </article>
-  );
-}
-
-export function WorkSection() {
-  return (
-    <section className={styles.work} id="work">
-      <div className={styles.container}>
-        <div className={styles.sectionHeader}>
-          <div>
-            <h2>Curated Solutions</h2>
-            <p>Tailored packages for every stage of your digital journey.</p>
-          </div>
-          <Link to={ROUTES.pricing}>
-            View all projects
-            <span>
-              <ArrowRightIcon />
+            <h3>Research and structure</h3>
+            <p>
+              Start by clarifying the user path, content hierarchy, and technical constraints before
+              investing in final visuals.
+            </p>
+          </article>
+          <article className={styles.processCard}>
+            <CodeWindow />
+            <span className={styles.processMeta}>
+              <Icon name="clock" />
+              Build
             </span>
-          </Link>
-        </div>
-        <div className={styles.solutionGrid}>
-          {solutions.map((solution) => (
-            <article className={styles.solutionCard} key={solution.title}>
-              <div className={styles.solutionImage}>
-                <img src={solution.image} alt={solution.alt} />
-                <div className={styles.imageOverlay} />
-                {solution.badge ? <span>{solution.badge}</span> : null}
-              </div>
-              <div className={styles.solutionBody}>
-                <h3>{solution.title}</h3>
-                <p>{solution.description}</p>
-                <div>
-                  <span>{solution.timeline}</span>
-                  <strong>{solution.price}</strong>
-                </div>
-              </div>
-            </article>
-          ))}
+            <h3>Design and implementation</h3>
+            <p>
+              Translate the layout into maintainable React components, scoped styles, and smooth
+              interaction states.
+            </p>
+          </article>
+          <article className={styles.processCard}>
+            <MetricsIllustration />
+            <span className={styles.processMeta}>
+              <Icon name="clock" />
+              Refine
+            </span>
+            <h3>Test and refine</h3>
+            <p>
+              Check the interface across breakpoints, trim layout shifts, and polish small details
+              before handoff.
+            </p>
+          </article>
         </div>
       </div>
     </section>
@@ -287,127 +523,170 @@ export function WorkSection() {
 }
 
 export function PricingSection() {
-  return (
-    <section className={styles.pricing} id="pricing">
-      <div className={styles.container}>
-        <div className={styles.pricingIntro}>
-          <h2>Transparent Pricing</h2>
-          <p>Choose the plan that fits your growth stage.</p>
-        </div>
-        <div className={styles.pricingGrid}>
-          {pricingPlans.map((plan) => (
-            <article
-              className={clsx(styles.pricingCard, plan.featured && styles.pricingCardFeatured)}
-              key={plan.name}
-            >
-              {plan.featured ? <span className={styles.popularBadge}>Most Popular</span> : null}
-              <h3>{plan.name}</h3>
-              <p>{plan.description}</p>
-              <div className={styles.priceLine}>
-                <strong>{plan.price}</strong>
-                {plan.suffix ? <span>{plan.suffix}</span> : null}
-              </div>
-              <ul>
-                {plan.features.map((feature) => (
-                  <li key={feature}>
-                    <CheckIcon />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <a
-                className={clsx(styles.pricingButton, plan.featured && styles.pricingButtonPrimary)}
-                href="#"
-              >
-                {plan.cta}
-              </a>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <ProcessSection />;
 }
 
 export function CtaSection() {
+  return <ContactSection />;
+}
+
+function SectionIntro({ body, kicker, title }: { body?: string; kicker: string; title: string }) {
   return (
-    <section className={styles.ctaSection}>
-      <div className={styles.ctaWash} />
-      <div className={styles.ctaGlow} />
-      <div className={styles.ctaContent}>
-        <h2>Ready to elevate your digital presence?</h2>
-        <p>
-          Join the visionaries who trust Asterix to build their future. We turn complex
-          requirements into elegant, high-performance websites.
-        </p>
-        <div>
-          <Link className={styles.ctaPrimary} to={ROUTES.pricing}>
-            Start Your Project
-            <ArrowRightIcon />
-          </Link>
-          <Link className={styles.ctaSecondary} to={ROUTES.home}>
-            Book Consultation
-          </Link>
-        </div>
-      </div>
-    </section>
+    <div className={styles.sectionIntro}>
+      <span>{kicker}</span>
+      <h2>{title}</h2>
+      {body ? <p>{body}</p> : null}
+    </div>
   );
 }
 
-function SiteFooter() {
+function ResearchIllustration() {
   return (
-    <footer className={styles.footer}>
+    <div className={styles.researchIllustration} aria-hidden="true">
+      <div className={styles.researchGrid}>
+        <div className={styles.researchPanelSmall}>User Journey</div>
+        <div className={styles.researchPanelLarge}>
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className={styles.researchPanelCircle}>Personas</div>
+      </div>
+    </div>
+  );
+}
+
+function CodeWindow() {
+  return (
+    <div className={styles.codeWindow} aria-label="Frontend code sample">
+      <div className={styles.windowChrome}>
+        <span />
+        <span />
+        <span />
+      </div>
+      <pre>
+        {codeLines.map((line, index) => (
+          <code key={line} style={{ '--line-index': index } as CSSProperties}>
+            {line}
+          </code>
+        ))}
+      </pre>
+    </div>
+  );
+}
+
+function MetricsIllustration() {
+  return (
+    <div className={styles.metricsIllustration} aria-hidden="true">
+      <div className={styles.metricPanelLarge}>
+        <span>USABILITY</span>
+        <svg viewBox="0 0 260 90">
+          <path d="M20 70 C60 44 78 56 110 36 S170 18 230 12" />
+          {Array.from({ length: 9 }, (_, index) => (
+            <rect height={25 + index * 4} key={index} width="4" x={24 + index * 24} y={64 - index * 4} />
+          ))}
+        </svg>
+      </div>
+      <div className={styles.metricPanelSmall}>
+        <strong>94%</strong>
+        <span>Task success</span>
+      </div>
+    </div>
+  );
+}
+
+function ContactSection() {
+  return (
+    <footer className={styles.contact} id="contact">
       <div className={styles.container}>
-        <div className={styles.footerGrid}>
-          <div className={styles.footerBrand}>
-            <BrandMark compact />
+        <div className={styles.contactGrid}>
+          <div>
+            <h2>Let's create something useful together</h2>
             <p>
-              We are a digital product studio crafting experiences that merge art, technology, and
-              strategy. Based in San Francisco, serving the world.
+              Ready to discuss a frontend role, product UI, or a resume review? I keep the
+              conversation focused on what needs to ship.
             </p>
-            <div className={styles.socialLinks}>
-              {(['twitter', 'instagram', 'linkedin'] as const).map((social) => (
-                <Link to={ROUTES.home} aria-label={social} key={social}>
-                  <SocialIcon name={social} />
-                </Link>
+            <div className={styles.contactActions}>
+              <a className={styles.primaryButton} href="mailto:hello@stevenduong.dev">
+                <Icon name="mail" />
+                hello@stevenduong.dev
+              </a>
+              <a className={styles.secondaryButton} href="#work">
+                <Icon name="calendar" />
+                Review work
+              </a>
+            </div>
+            <div className={styles.socials}>
+              {(['dribbble', 'twitter', 'linkedin', 'github'] as const).map((name) => (
+                <a aria-label={name} href="#" key={name}>
+                  <Icon name={name} />
+                </a>
               ))}
             </div>
           </div>
-          {footerGroups.map((group) => (
-            <nav aria-label={group.title} key={group.title}>
-              <h2>{group.title}</h2>
-              <ul>
-                {group.links.map((link) => (
-                  <li key={link}>
-                    <Link to={ROUTES.home}>{link}</Link>
-                  </li>
+          <div className={styles.quickLinks}>
+            <h3>Quick Links</h3>
+            <div>
+              <nav aria-label="Footer resume links">
+                {navItems.map((item) => (
+                  <a href={item.href} key={item.href}>
+                    {item.label}
+                  </a>
                 ))}
-              </ul>
-            </nav>
-          ))}
+              </nav>
+              <nav aria-label="Footer focus links">
+                {['React', 'TypeScript', 'Responsive UI', 'Product UX'].map((item) => (
+                  <a href="#skills" key={item}>
+                    {item}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </div>
         </div>
         <div className={styles.footerBottom}>
-          <p>© 2024 Asterix Digital. All rights reserved.</p>
           <div>
-            <Link to={ROUTES.home}>Privacy Policy</Link>
-            <Link to={ROUTES.home}>Terms of Service</Link>
+            <span>SD</span>
+            <p>(c) 2026 Steven Duong. All rights reserved.</p>
           </div>
+          <p>Designed from template2, rebuilt as React components.</p>
         </div>
       </div>
     </footer>
   );
 }
 
-export function LandingShell({ children }: { children: React.ReactNode }) {
+function ScrollTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 600);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <button
+      aria-label="Go to top"
+      className={`${styles.scrollTop} ${visible ? styles.scrollTopVisible : ''}`}
+      onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
+      type="button"
+    >
+      <Icon name="arrowUp" />
+    </button>
+  );
+}
+
+export function LandingShell({ children }: { children: ReactNode }) {
   return (
     <div className={styles.page}>
-      <div className={styles.background} aria-hidden="true">
-        <div className={styles.backgroundGlow} />
-        <div className={styles.backgroundGrid} />
-      </div>
+      <div className={styles.background} aria-hidden="true" />
+      <StatusIndicator />
       <SiteHeader />
       <main>{children}</main>
-      <SiteFooter />
+      <ScrollTopButton />
     </div>
   );
 }
@@ -416,8 +695,12 @@ export function HomeLanding() {
   return (
     <LandingShell>
       <HeroSection />
-      <LogoMarquee />
-      <CtaSection />
+      <TrustedTicker />
+      <ServicesSection />
+      <WorkSection />
+      <AboutSection />
+      <ProcessSection />
+      <ContactSection />
     </LandingShell>
   );
 }

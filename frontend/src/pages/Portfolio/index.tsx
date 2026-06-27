@@ -1,10 +1,5 @@
-import { CtaSection, LandingShell, WorkSection } from '@/components/LandingPage';
+import { HomeLanding } from '@/components/LandingPage';
 
 export function Portfolio() {
-  return (
-    <LandingShell>
-      <WorkSection />
-      <CtaSection />
-    </LandingShell>
-  );
+  return <HomeLanding />;
 }
