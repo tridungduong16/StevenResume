@@ -1,5 +1,5 @@
-import { HomeLanding } from '@/components/LandingPage';
+import { PricingLanding } from '@/components/LandingPage';
 
 export function Pricing() {
-  return <HomeLanding />;
+  return <PricingLanding />;
 }

@@ -1,5 +1,5 @@
-import { HomeLanding } from '@/components/LandingPage';
+import { ProcessLanding } from '@/components/LandingPage';
 
 export function Process() {
-  return <HomeLanding />;
+  return <ProcessLanding />;
 }

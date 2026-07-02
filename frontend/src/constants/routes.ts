@@ -20,7 +20,7 @@ export const NAVIGATION_ITEMS = [
     path: ROUTES.services,
   },
   {
-    label: 'Portfolio',
+    label: 'Project',
     path: ROUTES.portfolio,
   },
   {

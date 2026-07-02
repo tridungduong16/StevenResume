@@ -1,6 +1,10 @@
 import type { CSSProperties, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
+import { NAVIGATION_ITEMS, ROUTES } from '@/constants/routes';
+
+import { pricingPlans, processTiles } from './landingData';
 import styles from './LandingPage.module.scss';
 
 type IconName =
@@ -30,13 +34,6 @@ type IconProps = {
 const profileImage =
   'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f804111a-fe24-4660-b754-0f3654213f91_320w.jpg';
 
-const navItems = [
-  { label: 'Work', href: '#work' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Process', href: '#process' },
-  { label: 'Contact', href: '#contact' },
-] as const;
-
 const tickerItems = ['AI Agents', 'LLM Workflows', 'RAG', 'Python', 'MLOps', 'Explainable AI'];
 
 const services = [
@@ -64,18 +61,33 @@ const selectedWork = [
   {
     title: 'Incept AI',
     category: 'Personal Site',
+    description:
+      'A concise AI portfolio presence focused on credibility, clear positioning, and fast scanning.',
+    timeline: 'Project',
+    stack: 'React UI',
+    badge: 'Featured',
     image:
       'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a6ea5042-fd78-4888-b5e1-47f268a0569b_800w.jpg',
   },
   {
     title: 'Qonnex AI',
     category: 'Web Platform',
+    description:
+      'A product-facing interface direction for AI workflows, structured content, and conversion paths.',
+    timeline: 'Platform',
+    stack: 'AI UX',
+    badge: undefined,
     image:
       'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/78877756-9e45-410e-b630-78c3dfb8e94c_1600w.jpg',
   },
   {
     title: 'Okas AI',
     category: 'E-commerce',
+    description:
+      'A commercial experience tuned for clear information architecture and reliable customer journeys.',
+    timeline: 'Commerce',
+    stack: 'Web App',
+    badge: undefined,
     image:
       'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ee361ca-4978-4130-bab8-b605105c04b4_1600w.jpg',
   },
@@ -213,10 +225,10 @@ function Icon({ className, name }: IconProps) {
 
 function BrandMark() {
   return (
-    <a className={styles.brand} href="#hero">
+    <Link className={styles.brand} to={ROUTES.home}>
       <span>SD</span>
       <strong>Steven</strong>
-    </a>
+    </Link>
   );
 }
 
@@ -229,10 +241,14 @@ function SiteHeader() {
         <div className={styles.navBar}>
           <BrandMark />
           <nav aria-label="Primary navigation" className={styles.navLinks}>
-            {navItems.map((item) => (
-              <a href={item.href} key={item.href}>
+            {NAVIGATION_ITEMS.map((item) => (
+              <NavLink
+                className={({ isActive }) => (isActive ? styles.activeNavLink : undefined)}
+                key={item.path}
+                to={item.path}
+              >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
           </nav>
           <a className={styles.connectButton} href="#contact">
@@ -251,10 +267,15 @@ function SiteHeader() {
         </div>
         {isOpen ? (
           <nav aria-label="Mobile navigation" className={styles.mobileNav}>
-            {navItems.map((item) => (
-              <a href={item.href} key={item.href} onClick={() => setIsOpen(false)}>
+            {NAVIGATION_ITEMS.map((item) => (
+              <NavLink
+                className={({ isActive }) => (isActive ? styles.activeNavLink : undefined)}
+                key={item.path}
+                onClick={() => setIsOpen(false)}
+                to={item.path}
+              >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
             <a className={styles.mobileConnect} href="#contact" onClick={() => setIsOpen(false)}>
               <Icon name="arrowRight" />
@@ -282,41 +303,35 @@ function StatusIndicator() {
 }
 
 function HeroSection() {
-  const [cursor, setCursor] = useState({ active: false, x: 0, y: 0 });
-  const heroStyle = {
-    '--cursor-x': `${cursor.x}px`,
-    '--cursor-y': `${cursor.y}px`,
-  } as CSSProperties;
-
   return (
-    <section
-      className={`${styles.hero} ${cursor.active ? styles.cursorActive : ''}`}
-      id="hero"
-      onMouseEnter={() => setCursor((value) => ({ ...value, active: true }))}
-      onMouseLeave={() => setCursor((value) => ({ ...value, active: false }))}
-      onMouseMove={(event) => setCursor({ active: true, x: event.clientX, y: event.clientY })}
-      style={heroStyle}
-    >
+    <section className={styles.hero} id="hero">
       <div className={styles.container}>
         <div className={styles.heroInner}>
           <div className={`${styles.profileWrap} ${styles.scaleIn}`}>
             <img alt="Steven Duong" src={profileImage} />
           </div>
+          <div className={`${styles.heroBadge} ${styles.slideUp}`}>
+            <span className={styles.badgePulse}>
+              <span />
+              <span />
+            </span>
+            <span>Available for AI engineering work</span>
+          </div>
           <p className={`${styles.eyebrow} ${styles.slideUp}`}>Steven Duong</p>
           <h1 className={`${styles.heroTitle} ${styles.slideUp} ${styles.delay1}`}>
-            <span>AI</span>
-            <span>Engineer</span>
+            <span>AI Engineer</span>
+            <span>reason & explain.</span>
           </h1>
           <p className={`${styles.heroCopy} ${styles.slideUp} ${styles.delay2}`}>
             I build machine learning systems and AI agents with practical engineering, research
             depth, and a focus on reliable model behavior.
           </p>
           <div className={`${styles.heroActions} ${styles.slideUp} ${styles.delay3}`}>
-            <a className={styles.primaryButton} href="#work">
+            <Link className={styles.primaryButton} to={ROUTES.portfolio}>
               <Icon name="play" />
               View my work
               <Icon name="arrowRight" />
-            </a>
+            </Link>
             <a className={styles.secondaryButton} href="#about">
               <Icon name="user" />
               About me
@@ -365,26 +380,51 @@ export function ServicesSection() {
   return (
     <section className={styles.services} id="skills">
       <div className={styles.container}>
-        <SectionIntro
-          kicker="What I do"
-          title="AI engineering for agentic products."
-          body="Skills focused on LLM agents, machine learning systems, retrieval workflows, and interpretable model behavior."
-        />
-        <div className={styles.serviceGrid}>
-          {services.map((service, index) => (
-            <article className={styles.serviceCard} key={service.title} style={{ '--card-index': index } as CSSProperties}>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <ul>
-                {service.bullets.map((bullet) => (
-                  <li key={bullet}>
-                    <Icon name="check" />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+        <div className={styles.servicesLayout}>
+          <div className={styles.servicesSticky}>
+            <div className={styles.sectionIntroLeft}>
+              <span>What I do</span>
+              <h2>
+                AI engineering for
+                <br />
+                <em>agentic products.</em>
+              </h2>
+              <p>
+                Skills focused on LLM agents, machine learning systems, retrieval workflows, and
+                interpretable model behavior.
+              </p>
+            </div>
+            <div className={styles.serviceList}>
+              {services.map((service) => (
+                <article className={styles.serviceLine} key={service.title}>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                  <ul>
+                    {service.bullets.map((bullet) => (
+                      <li key={bullet}>
+                        <Icon name="check" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            <Link className={styles.inlineLink} to={ROUTES.portfolio}>
+              Explore selected work
+              <Icon name="arrowRight" />
+            </Link>
+          </div>
+          <div className={styles.tileMosaic}>
+            {processTiles.map((tile) => (
+              <article className={tile.tall ? styles.tileTall : styles.tileWide} key={tile.title}>
+                <img alt={tile.alt} src={tile.image} />
+                <div />
+                <span>{tile.phase}</span>
+                <strong>{tile.title}</strong>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -408,11 +448,19 @@ export function WorkSection() {
         <div className={styles.workGrid}>
           {selectedWork.map((work) => (
             <article className={styles.workCard} key={work.title}>
-              <img alt={work.title} src={work.image} />
-              <div className={styles.workOverlay} />
-              <div className={styles.workMeta}>
-                <strong>{work.title}</strong>
+              <div className={styles.workImage}>
+                <img alt={work.title} src={work.image} />
+                <div className={styles.workOverlay} />
+                {work.badge ? <span className={styles.workBadge}>{work.badge}</span> : null}
+              </div>
+              <div className={styles.workBody}>
                 <span>{work.category}</span>
+                <h3>{work.title}</h3>
+                <p>{work.description}</p>
+                <div className={styles.workMeta}>
+                  <span>{work.timeline}</span>
+                  <strong>{work.stack}</strong>
+                </div>
               </div>
             </article>
           ))}
@@ -474,7 +522,7 @@ export function ProcessSection() {
         <SectionIntro
           kicker="Process"
           title="From structure to polished delivery."
-          body="The process cards preserve template2's glass panels, code window, and metrics treatment without relying on external scripts."
+          body="A practical path from problem framing to implementation, validation, and visual polish."
         />
         <div className={styles.processGrid}>
           <article className={styles.processCard}>
@@ -520,7 +568,50 @@ export function ProcessSection() {
 }
 
 export function PricingSection() {
-  return <ProcessSection />;
+  return (
+    <section className={styles.pricing} id="pricing">
+      <div className={styles.container}>
+        <SectionIntro
+          kicker="Pricing"
+          title="Flexible scopes for focused delivery."
+          body="Choose the level of support that matches the problem, from a concise project pass to deeper product engineering."
+        />
+        <div className={styles.pricingGrid}>
+          {pricingPlans.map((plan) => (
+            <article
+              className={`${styles.pricingCard} ${plan.featured ? styles.featuredPricingCard : ''}`}
+              key={plan.name}
+            >
+              {plan.featured ? <span className={styles.pricingBadge}>Recommended</span> : null}
+              <div className={styles.pricingHeader}>
+                <h3>{plan.name}</h3>
+                <p>{plan.description}</p>
+              </div>
+              <div className={styles.pricingPrice}>
+                <strong>{plan.price}</strong>
+                {plan.suffix ? <span>{plan.suffix}</span> : null}
+              </div>
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}>
+                    <Icon name="check" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a
+                className={plan.featured ? styles.primaryButton : styles.secondaryButton}
+                href="#contact"
+              >
+                {plan.cta}
+                <Icon name="arrowRight" />
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export function CtaSection() {
@@ -608,10 +699,10 @@ function ContactSection() {
                 <Icon name="mail" />
                 hello@stevenduong.dev
               </a>
-              <a className={styles.secondaryButton} href="#work">
+              <Link className={styles.secondaryButton} to={ROUTES.portfolio}>
                 <Icon name="calendar" />
                 Review work
-              </a>
+              </Link>
             </div>
             <div className={styles.socials}>
               {(['dribbble', 'twitter', 'linkedin', 'github'] as const).map((name) => (
@@ -625,17 +716,17 @@ function ContactSection() {
             <h3>Quick Links</h3>
             <div>
               <nav aria-label="Footer resume links">
-                {navItems.map((item) => (
-                  <a href={item.href} key={item.href}>
+                {NAVIGATION_ITEMS.map((item) => (
+                  <Link key={item.path} to={item.path}>
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </nav>
               <nav aria-label="Footer focus links">
                 {['AI Agents', 'RAG', 'Explainable AI', 'MLOps'].map((item) => (
-                  <a href="#skills" key={item}>
+                  <Link key={item} to={ROUTES.services}>
                     {item}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -646,7 +737,7 @@ function ContactSection() {
             <span>SD</span>
             <p>(c) 2026 Steven Duong. All rights reserved.</p>
           </div>
-          <p>Designed from template2, rebuilt as React components.</p>
+          <p>AI engineering portfolio and resume.</p>
         </div>
       </div>
     </footer>
@@ -668,7 +759,7 @@ function ScrollTopButton() {
     <button
       aria-label="Go to top"
       className={`${styles.scrollTop} ${visible ? styles.scrollTopVisible : ''}`}
-      onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       type="button"
     >
       <Icon name="arrowUp" />
@@ -677,6 +768,12 @@ function ScrollTopButton() {
 }
 
 export function LandingShell({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className={styles.page}>
       <div className={styles.background} aria-hidden="true" />
@@ -693,10 +790,43 @@ export function HomeLanding() {
     <LandingShell>
       <HeroSection />
       <TrustedTicker />
-      <ServicesSection />
-      <WorkSection />
       <AboutSection />
+      <ContactSection />
+    </LandingShell>
+  );
+}
+
+export function ServicesLanding() {
+  return (
+    <LandingShell>
+      <ServicesSection />
+      <ContactSection />
+    </LandingShell>
+  );
+}
+
+export function PortfolioLanding() {
+  return (
+    <LandingShell>
+      <WorkSection />
+      <ContactSection />
+    </LandingShell>
+  );
+}
+
+export function ProcessLanding() {
+  return (
+    <LandingShell>
       <ProcessSection />
+      <ContactSection />
+    </LandingShell>
+  );
+}
+
+export function PricingLanding() {
+  return (
+    <LandingShell>
+      <PricingSection />
       <ContactSection />
     </LandingShell>
   );
