@@ -31,8 +31,7 @@ type IconProps = {
   name: IconName;
 };
 
-const profileImage =
-  'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f804111a-fe24-4660-b754-0f3654213f91_320w.jpg';
+const profileImage = '/avatar.PNG';
 
 const tickerItems = ['AI Agents', 'LLM Workflows', 'RAG', 'Python', 'MLOps', 'Explainable AI'];
 
@@ -223,15 +222,6 @@ function Icon({ className, name }: IconProps) {
   );
 }
 
-function BrandMark() {
-  return (
-    <Link className={styles.brand} to={ROUTES.home}>
-      <span>SD</span>
-      <strong>Steven</strong>
-    </Link>
-  );
-}
-
 function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -239,7 +229,6 @@ function SiteHeader() {
     <header className={styles.header}>
       <div className={styles.navShell}>
         <div className={styles.navBar}>
-          <BrandMark />
           <nav aria-label="Primary navigation" className={styles.navLinks}>
             {NAVIGATION_ITEMS.map((item) => (
               <NavLink
@@ -322,10 +311,23 @@ function HeroSection() {
             <span>AI Engineer</span>
             <span>reason & explain.</span>
           </h1>
-          <p className={`${styles.heroCopy} ${styles.slideUp} ${styles.delay2}`}>
-            I build machine learning systems and AI agents with practical engineering, research
-            depth, and a focus on reliable model behavior.
-          </p>
+          <form
+            className={`${styles.heroChat} ${styles.slideUp} ${styles.delay2}`}
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <label className={styles.srOnly} htmlFor="hero-chat">
+              Ask Steven about AI engineering
+            </label>
+            <input
+              autoComplete="off"
+              id="hero-chat"
+              placeholder="Ask about AI agents, RAG, MLOps, or XAI..."
+              type="text"
+            />
+            <button aria-label="Send message" type="submit">
+              <Icon name="arrowRight" />
+            </button>
+          </form>
           <div className={`${styles.heroActions} ${styles.slideUp} ${styles.delay3}`}>
             <Link className={styles.primaryButton} to={ROUTES.portfolio}>
               <Icon name="play" />
@@ -731,13 +733,6 @@ function ContactSection() {
               </nav>
             </div>
           </div>
-        </div>
-        <div className={styles.footerBottom}>
-          <div>
-            <span>SD</span>
-            <p>(c) 2026 Steven Duong. All rights reserved.</p>
-          </div>
-          <p>AI engineering portfolio and resume.</p>
         </div>
       </div>
     </footer>

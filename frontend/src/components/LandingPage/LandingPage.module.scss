@@ -52,53 +52,17 @@
 }
 
 .navBar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   min-height: 4.5rem;
   min-width: 0;
   align-items: center;
-  justify-content: space-between;
+  justify-items: end;
   gap: 1rem;
-}
 
-.brand {
-  display: inline-flex;
-  min-width: 0;
-  align-items: center;
-  gap: 0.6rem;
-  color: #fff;
-  text-decoration: none;
-
-  span {
-    display: grid;
-    width: 2rem;
-    height: 2rem;
-    place-items: center;
-    border-radius: 0.35rem;
-    background: linear-gradient(135deg, #fb923c, #f97316);
-    color: #050505;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0;
-    box-shadow: 0 0.9rem 2rem rgba(249, 115, 22, 0.22);
-    transition:
-      box-shadow 0.25s ease,
-      transform 0.25s ease;
-  }
-
-  strong {
-    display: none;
-    font-size: 1rem;
-    font-weight: 650;
-    letter-spacing: 0;
-
-    @media (min-width: 420px) {
-      display: inline;
-    }
-  }
-
-  &:hover span {
-    box-shadow: 0 1rem 2.4rem rgba(249, 115, 22, 0.35);
-    transform: translateY(-1px);
+  @media (min-width: 768px) {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    justify-items: stretch;
   }
 }
 
@@ -122,6 +86,8 @@
 
   @media (min-width: 768px) {
     display: flex;
+    grid-column: 2;
+    justify-self: center;
   }
 }
 
@@ -177,6 +143,8 @@
 
   @media (min-width: 768px) {
     display: inline-flex;
+    grid-column: 3;
+    justify-self: end;
   }
 }
 
@@ -441,20 +409,87 @@
   }
 }
 
-.heroCopy {
-  max-width: 45rem;
-  margin: 1.5rem auto 0;
-  padding-inline: 0.25rem;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 1.05rem;
-  font-weight: 350;
-  line-height: 1.7;
-  overflow-wrap: normal;
-  text-wrap: pretty;
+.heroChat {
+  display: grid;
+  width: min(100%, 43rem);
+  min-height: 4.25rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+    rgba(10, 10, 10, 0.88);
+  padding: 0.55rem 0.55rem 0.55rem 1.3rem;
+  box-shadow:
+    0 1.25rem 3.5rem rgba(0, 0, 0, 0.34),
+    0 0 2.6rem rgba(249, 115, 22, 0.08);
+  backdrop-filter: blur(18px);
 
-  @media (min-width: 768px) {
-    font-size: 1.18rem;
+  input {
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 0.95rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.46);
+    }
   }
+
+  button {
+    display: grid;
+    width: 3.15rem;
+    height: 3.15rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid rgba(249, 115, 22, 0.42);
+    border-radius: 999px;
+    background: #f97316;
+    color: #050505;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+
+    svg {
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+
+    &:hover {
+      background: #fb923c;
+      transform: translateX(1px);
+    }
+  }
+
+  @media (max-width: 520px) {
+    min-height: 3.8rem;
+    padding-left: 1rem;
+
+    input {
+      font-size: 0.86rem;
+    }
+
+    button {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .heroActions {
@@ -1656,45 +1691,6 @@
     &:hover {
       color: #fb923c;
     }
-  }
-}
-
-.footerBottom {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
-  color: rgba(255, 255, 255, 0.34);
-  font-size: 0.82rem;
-
-  div {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  span {
-    display: grid;
-    width: 2rem;
-    height: 2rem;
-    place-items: center;
-    border-radius: 0.35rem;
-    background: #f97316;
-    color: #050505;
-    font-weight: 850;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: center;
   }
 }
 
